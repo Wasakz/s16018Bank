@@ -8,4 +8,12 @@ public class TransferInfo {
         this.balance = balance;
         this.status = status;
     }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
 }

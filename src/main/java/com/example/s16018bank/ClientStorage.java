@@ -10,15 +10,17 @@ import java.util.Optional;
 public class ClientStorage {
     private List<Client> clientList = new ArrayList<>();
 
-    public ClientStorage(List<Client> clientList) {
+    public ClientStorage() {
         // Add some initial data to Client storage
         registerClient(50);
         registerClient(150);
         registerClient(521523);
     }
 
-    public void registerClient(double balance) {
+    public Client registerClient(double balance) {
         Client client = new Client(balance);
+        clientList.add(client);
+        return client;
     }
 
     public List<Client> getAllClients() {
