@@ -1,11 +1,13 @@
 package com.example.s16018bank;
 
+import java.util.UUID;
+
 public class Client {
     private String id;
-    private int balance;
+    private double balance;
 
-    public Client(String id, int balance) {
-        this.id = id;
+    public Client(double balance) {
+        this.id = UUID.randomUUID().toString();
         this.balance = balance;
     }
 
@@ -13,15 +15,7 @@ public class Client {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public int getBalance() {
+    public double getBalance() {
         return balance;
-    }
-
-    public void setBalance(int balance) {
-        this.balance = balance;
     }
 }

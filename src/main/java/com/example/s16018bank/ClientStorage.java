@@ -7,7 +7,15 @@ public class ClientStorage {
     private List<Client> clientList = new ArrayList<>();
 
     public ClientStorage(List<Client> clientList) {
-        Client client1 = new Client("123", 50);
-        Client client2 = new Client("321", 150);
+        // Add some initial data to Client storage
+        registerClient(50);
+        registerClient(150);
+        registerClient(521523);
     }
+
+    public void registerClient(double balance) {
+        Client client = new Client(balance);
+    }
+
+    public void transferMoney()
 }
