@@ -16,6 +16,4 @@ public class ClientStorage {
     public void registerClient(double balance) {
         Client client = new Client(balance);
     }
-
-    public void transferMoney()
 }
