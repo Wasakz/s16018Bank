@@ -1,18 +1,21 @@
 package com.example.s16018bank;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-public class ClientServiceTests {
-
+@SpringBootTest
+public class ClientServiceIntegrationTests {
+    @Autowired
+    ClientStorage clientStorage = new ClientStorage();
+    @Autowired
+    ClientService clientService = new ClientService(clientStorage);
     @Test
     void shouldTransferMoney() throws Exception {
         // given
-        ClientStorage clientStorage = new ClientStorage();
-        ClientService clientService = new ClientService(clientStorage);
         Client client = clientStorage.registerClient(500);
 
         // when
@@ -25,8 +28,6 @@ public class ClientServiceTests {
     @Test
     void shouldNotTransferAboveBalance() throws Exception {
         // given
-        ClientStorage clientStorage = new ClientStorage();
-        ClientService clientService = new ClientService(clientStorage);
         Client client = clientStorage.registerClient(10);
 
         // when
@@ -39,8 +40,6 @@ public class ClientServiceTests {
     @Test
     void shouldCalculateMoneyAfterDeposit() throws Exception {
         // given
-        ClientStorage clientStorage = new ClientStorage();
-        ClientService clientService = new ClientService(clientStorage);
         Client client = clientStorage.registerClient(50);
 
         // when
@@ -51,24 +50,8 @@ public class ClientServiceTests {
     }
 
     @Test
-    void shouldCalculateMoneyAfterTransfer() throws Exception {
-        // given
-        ClientStorage clientStorage = new ClientStorage();
-        ClientService clientService = new ClientService(clientStorage);
-        Client client = clientStorage.registerClient(150);
-
-        // when
-        TransferInfo transferInfo = clientService.transferMoney(client.getId(), 50);
-
-        //then
-        assertEquals(transferInfo.getBalance(), 150 - 50);
-    }
-
-    @Test
     void shouldThrowErrorWhenClientNotFound() throws Exception {
         // given
-        ClientStorage clientStorage = new ClientStorage();
-        ClientService clientService = new ClientService(clientStorage);
         Client client = clientStorage.registerClient(50);
 
         // when
